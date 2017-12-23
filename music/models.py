@@ -16,5 +16,7 @@ class Song(models.Model):
     title = models.CharField(max_length=250)
     file_ext = models.CharField(max_length=10)
 
+    def __str__ (self):
+        return self.album.title + ' - ' + self.title
 
     
