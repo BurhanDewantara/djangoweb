@@ -1,1 +1,13 @@
-{{album.title}}
+<img src="{{ album.logo }}">
+
+<h1>{{ album.title }}</h1>
+
+{% if album.song_set.all %}
+<ul>
+    {% for song in album.song_set.all %}
+    <li>{{ song.title }}.{{ song.file_ext }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<h1>No song yet on this album</h1>
+{% endif %}
