@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.http import Http404
 from .models import Album
 
 # Create your views here.
@@ -12,4 +13,9 @@ def index(request):
     return render(request, "music/index.html",context)
 
 def show_detail(request, album_id):
-    return HttpResponse("music id = " + str(album_id))
+    try:
+        album = Album.objects.get(pk=album_id)
+    except Album.DoesNotExist:
+        raise Http404("Album Does no Exist")
+    
+    return render (request, "music/detail.html", {'album':album})
