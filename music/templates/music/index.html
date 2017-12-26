@@ -1,9 +1,25 @@
-{% if all_albums  %}
-<ul>
-    {% for album in all_albums  %}
-    <li><a href="{% url 'music:detail' album.id %}"> {{ album.title }} </a></li>
-    {% endfor %}
-</ul>
-{% else %}
-<h1>No album to shown</h1>
-{% endif %}
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" />
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'music:index' %}">Musica</a>
+        </div>
+    </div>
+</nav>
+
+<body>
+    {% if all_albums %}
+    <ul>
+        {% for album in all_albums %}
+        <li>
+            <a href="{% url 'music:detail' album.id %}"> {{ album.title }} </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h1>No album to shown</h1>
+    {% endif %}
+</body>
