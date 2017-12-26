@@ -1,8 +1,29 @@
 <img src="{{ album.logo }}">
-
 <h1>{{ album.title }}</h1>
 
-{% if album.song_set.all %}
+{% if error_message %}
+    {{ error_message}}
+{% endif %}
+
+<form action="{% url 'music:favorite' album.id %}" method="POST">
+    {% csrf_token %}
+    {% for song in album.song_set.all  %}
+        <input type="radio" 
+                id="song{{ forloop.counter }}" 
+                name="song"
+                value="{{ song.id }}">
+        <label for="song{{ forloop.counter }}">
+            {{ song.title }}
+        {% if song.is_favorite %}
+            <img src="http://www.clker.com/cliparts/L/k/y/e/Y/U/yellow-star-hi.png" alt="fav"> 
+        {% endif %}
+        </label>
+        <br>
+    {% endfor %}
+    <input type="submit" value="favorite">
+</form>
+
+<!-- {% if album.song_set.all %}
 <ul>
     {% for song in album.song_set.all %}
     <li>{{ song.title }}.{{ song.file_ext }}</a></li>
@@ -10,4 +31,5 @@
 </ul>
 {% else %}
 <h1>No song yet on this album</h1>
-{% endif %}
+{% endif %} -->
+
