@@ -28,17 +28,22 @@
             <!-- Items -->
             <div class="collapse navbar-collapse" id="topNavBar">
 
+                <!-- TopLeft NavBar -->
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <!-- Albums -->
+                    <li class="{% block albums_active %} {% endblock %}">
                         <a href="{% url 'music:index'%}">
                             <span class="glyphicon glyphicon-cd" area-hidden="true"></span> Albums </a>
                     </li>
-                    <li class="">
+
+                    <!-- Songs -->
+                    <li class="{% block songs_active %} {% endblock %}">
                         <a href="#">
                             <span class="glyphicon glyphicon-music" area-hidden="true"></span> Songs </a>
                     </li>
                 </ul>
 
+                <!-- Search -->
                 <form class="navbar-form navbar-left" role="search" method="get" action="">
                     <div class="form-group">
                         <input type="text" class="form-control" name="q" value="">
@@ -46,13 +51,13 @@
                     <button class="btn btn-default" type="submit">Search</button>
                 </form>
 
-
+                <!-- TopRight NavBar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="">
-                        <a href="#">
+                    <li class="{% block add_album_active %} {% endblock %}">
+                        <a href="{% url 'music:album-add' %}">
                             <span class="glyphicon glyphicon-plus" area-hidden="true"></span> Add Album </a>
                     </li>
-                    <li class="">
+                    <li class="{% block logout_active %} {% endblock %}">
                         <a href="#">
                             <span class="glyphicon glyphicon-off" area-hidden="true"></span> Logout </a>
                     </li>
