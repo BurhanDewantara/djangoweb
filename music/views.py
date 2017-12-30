@@ -1,6 +1,7 @@
 from django.views import generic
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Album
+from django.urls import reverse, reverse_lazy
 
 
 class AlbumListView(generic.ListView):
@@ -20,4 +21,13 @@ class AlbumDetailView(generic.DetailView):
 class AlbumCreateView(CreateView):
     model = Album
     template_name = "music/create.html"
+    fields = ['artist', 'title', 'genre', 'logo']
+
+class AlbumDeleteView(DeleteView):
+    model = Album
+    success_url = reverse_lazy('music:index')
+
+class AlbumUpdateView(UpdateView):
+    model = Album
+    template_name = "music/edit.html"
     fields = ['artist', 'title', 'genre', 'logo']
