@@ -1,0 +1,29 @@
+{% extends "music/base.html" %}
+{% block title %} Album Detail {% endblock %}
+{% block albums_active %} active {% endblock %}
+
+{% block body %}
+
+<img src="{{ album.logo }}">
+<h1>{{ album.title }}</h1>
+
+{% if error_message %}
+    {{ error_message}}
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    {% for song in album.song_set.all  %}
+        <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
+        <label for="song{{ forloop.counter }}">
+            {{ song.title }}
+        {% if song.is_favorite %}
+            <img src="http://www.clker.com/cliparts/L/k/y/e/Y/U/yellow-star-hi.png" alt="fav" width=15px> 
+        {% endif %}
+        </label>
+        <br>
+    {% endfor %}
+    <input type="submit" value="favorite">
+</form>
+
+{% endblock  %}

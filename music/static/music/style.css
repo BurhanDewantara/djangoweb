@@ -1,0 +1,16 @@
+body{
+    background: white url("images/background.png");
+}
+
+.navbar{
+    border-radius:0; 
+}
+
+.navbar-brand{
+    font-family: Tangerine cursive;
+}
+
+.image-small{
+    width: 100%;
+    height: 100%;
+}
